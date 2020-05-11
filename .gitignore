@@ -1,0 +1,6 @@
+__pycache__
+.env
+mkdocs_diagrams.egg-info
+*.egg-info
+build
+dist
