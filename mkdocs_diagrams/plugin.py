@@ -70,7 +70,10 @@ class DiagramsPlugin(mkdocs.plugins.BasePlugin):
         for file in files:
             if file.src_path.endswith(self.config["file_extension"]):
                 jobs.append(pool.submit(self._render_diagram, file))
-        concurrent.futures.wait(jobs)
+
+        for job in concurrent.futures.as_completed(jobs):
+            # Make sure any potential exceptions from job are raised.
+            job.result()
 
     def on_pre_build(self, config):
         global last_run_timestamp
