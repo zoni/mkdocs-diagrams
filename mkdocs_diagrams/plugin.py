@@ -60,9 +60,7 @@ class DiagramsPlugin(mkdocs.plugins.BasePlugin):
         os.makedirs(os.path.dirname(file.abs_dest_path), exist_ok=True)
         shutil.copy(file.abs_src_path, file.abs_dest_path)
 
-        result = subprocess.run(["python", filename], check=False, cwd=dest_dir)
-        if result.returncode != 0:
-            self.log.error("Failed to render %s", file.src_path)
+        subprocess.run(["python", filename], check=True, cwd=dest_dir)
 
     def _walk_files_and_render(self, config):
         pool = self._create_threadpool()
@@ -73,8 +71,10 @@ class DiagramsPlugin(mkdocs.plugins.BasePlugin):
                 jobs.append(pool.submit(self._render_diagram, file))
 
         for job in concurrent.futures.as_completed(jobs):
-            # Make sure any potential exceptions from job are raised.
-            job.result()
+            try:
+                job.result()
+            except Exception:
+                self.log.exception("Worker raised an exception while rendering a diagram")
 
     def on_pre_build(self, config):
         global last_run_timestamp
