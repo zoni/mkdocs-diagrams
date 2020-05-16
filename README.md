@@ -1,13 +1,16 @@
 # mkdocs-diagrams
 
-A plugin for the [MkDocs] documentation site generator which facilitates easy embedding of system architecture diagrams through the [Diagrams] project.
+A plugin for the [MkDocs] documentation site generator which facilitates easy embedding of system architecture diagrams through the [Diagrams] project ([view examples]).
 
 ## Installation
 
 `mkdocs-diagrams` is available on PyPI.
 It can be installed through `pip install mkdocs-diagrams` or equivalent command with pipenv or poetry.
 
-Once installed, configure MkDocs to use it by including `diagrams` in the `plugins` list in your `mkdocs.yml`.
+You'll also need to have the [graphviz] `dot` tool installed on your system.
+It's available as `graphviz` in most package managers.
+
+Once installed, configure MkDocs to use this plugin by including `diagrams` in the `plugins` list in your `mkdocs.yml`.
 For example:
 
 ```yaml
@@ -89,4 +92,6 @@ Setting this allows you to limit the number of workers to this amount.
 Default: Dynamically chosen (`os.cpu_count() + 2`)
 
 [diagrams]: https://diagrams.mingrammer.com/
+[graphviz]: https://www.graphviz.org/
 [mkdocs]: https://www.mkdocs.org/
+[view examples]: https://diagrams.mingrammer.com/docs/getting-started/examples
