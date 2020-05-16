@@ -9,7 +9,7 @@ def read(name):
 
 setuptools.setup(
     name="mkdocs-diagrams",
-    version="0.0.1",
+    version="0.0.2",
     packages=["mkdocs_diagrams"],
     url="https://github.com/zoni/mkdocs-diagrams",
     license="MIT",
