@@ -82,5 +82,6 @@ class DiagramsPlugin(mkdocs.plugins.BasePlugin):
                 "Watcher started looping, skipping diagrams rendering on this run"
             )
             return
+        os.makedirs(config['site_dir'], exist_ok=True)
         self._walk_files_and_render(config)
         last_run_timestamp = int(time.time())
