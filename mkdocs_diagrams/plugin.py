@@ -57,6 +57,7 @@ class DiagramsPlugin(mkdocs.plugins.BasePlugin):
 
         # Even when writing in abs_src_path rather than abs_dest_path, this
         # seems needed to make livereload accurately pick up changes.
+        os.makedirs(os.path.dirname(file.abs_dest_path), exist_ok=True)
         shutil.copy(file.abs_src_path, file.abs_dest_path)
 
         result = subprocess.run(["python", filename], check=False, cwd=dest_dir)
@@ -82,6 +83,5 @@ class DiagramsPlugin(mkdocs.plugins.BasePlugin):
                 "Watcher started looping, skipping diagrams rendering on this run"
             )
             return
-        os.makedirs(config['site_dir'], exist_ok=True)
         self._walk_files_and_render(config)
         last_run_timestamp = int(time.time())
