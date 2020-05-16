@@ -18,7 +18,7 @@ setuptools.setup(
     description="MkDocs plugin to render Diagrams files",
     long_description=read("README.md"),
     long_description_content_type="text/markdown",
-    install_requires=["mkdocs"],
+    install_requires=["mkdocs", "diagrams"],
     entry_points={"mkdocs.plugins": ["diagrams = mkdocs_diagrams:DiagramsPlugin",]},
     classifiers=[
         "Development Status :: 4 - Beta",
