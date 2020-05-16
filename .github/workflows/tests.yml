@@ -1,0 +1,22 @@
+name: Run tests
+on: [push]
+jobs:
+  integration-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.x"
+
+      - name: Install dependencies
+        run: pip install . pytest
+
+      - name: Install graphviz
+        run: sudo apt-get install --no-install-recommends graphviz
+
+      - name: Run tests
+        run: py.test
